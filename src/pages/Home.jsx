@@ -24,6 +24,7 @@ function Home() {
     };
     loadPopularMovies();
   }, []);
+  
 
   const handleSearch = async(e) => {
     e.preventDefault();
@@ -61,7 +62,7 @@ function Home() {
       {loading ? (
         <div className="loading">Loading...</div>
       ) : (
-        <div className="movies-grid">
+          <div className="movies-grid">
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
