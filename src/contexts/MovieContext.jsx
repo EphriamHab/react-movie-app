@@ -8,6 +8,21 @@ export const useMovieContext = () => useContext(MovieContext)
 
 export const MovieProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
+    const [ratings, setRatings] = useState({});
+    useEffect(() => {
+        const storedRatings = localStorage.getItem("ratings");
+        if (storedRatings) setRatings(JSON.parse(storedRatings));
+    }, []);
+    
+    useEffect(() => {
+        localStorage.setItem("ratings", JSON.stringify(ratings));
+    }, [ratings]);
+    
+    const rateMovie = (movieId, rating) => {
+        setRatings(prev => ({ ...prev, [movieId]: rating }));
+    };
+    
+    const getRating = (movieId) => ratings[movieId] || 0;
     
 
     useEffect(() => {
@@ -37,7 +52,9 @@ export const MovieProvider = ({ children }) => {
         favorites,
         addToFavorites,
         removeFromFavorites,
-        isFavorite
+        isFavorite,
+        rateMovie,
+        getRating
     }
     return (
         <MovieContext.Provider value={value}>
