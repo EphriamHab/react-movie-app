@@ -101,10 +101,31 @@
   font-size: 0.9rem;
 }
 
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .user-rating {
   color: #ffd700;
   font-size: 0.9rem;
   margin-top: auto;
+}
+.rating {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.star {
+  font-size: 20px;
+  color: gray;
+  transition: color 0.3s;
+}
+
+.star.filled {
+  color: gold;
 }
 
 @media (max-width: 768px) {
